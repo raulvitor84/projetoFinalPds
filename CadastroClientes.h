@@ -1,36 +1,65 @@
 #ifndef CADASTROCLIENTES_H
 #define CADASTROCLIENTES_H
+
+#include <algorithm>
+
+
 #include <string>
-#include <iostream>
+
 #include <vector>
 
 using namespace std;
 
 
+// Classes referentes ao Cadastro de Clientes pela separacao de 1/3 informada
+
+
 class CadastroClientes {
 public:
 
-    CadastroClientes Cliente( string cpf,  string nome);
+    // classe interna
+    class Cliente {
 
-     string getCPF();
-
-     string getNome();
-
-    void cadastrarCliente( string cpf,  string nome);
+    public:
 
 
-    bool clienteExistente( string cpf);
+        Cliente(string cpf, string nome);
+
+        string checarCPF() const;
+
+        string checarNOME() const;
+
+
+
+
+    private:
+
+        string cpf;
+
+        string nome;
+
+
+    };
+
+
+    void cadastrarCliente(string cpf, string nome);
+
+    bool clienteExistente(string cpf);
+
+    void removerCliente(string cpf);
+
+    void listarClientes() const;
+
+
+
 
 
 private:
 
-  vector<CadastroClientes> clientes;
-
-  string cpf;
-
-  string nome;
+    vector<Cliente> clientes;
 
 };
 
 
 #endif // CADASTROCLIENTES_H
+
