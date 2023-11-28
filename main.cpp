@@ -1,11 +1,17 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 #include "CadastroClientes.h"
 
 using namespace std;
 
 
+
+void leitura_arquivo (char nome_arquivo) {
+ 
+
+}
 
 
 
@@ -19,12 +25,21 @@ int main() {
                cin >> select;
 
         switch (select) {
+
+         
          
             case 'CC':
          CadastroClientes cadastro;
          string cpf, nome;
             cadastro.cadastrarCliente(cpf, nome);
 
+                break;
+         
+            case "LA": //Ler Arquivo de Cadastro: LA <Nome de Arquivo>
+            string nome_arquivo;
+            std::in >> nome_arquivo;
+            leitura_arquivo(nome_arquivo);
+            
                 break;
 
             case 'CF': //Cadastrar Filme: CF <Tipo: F|D> <quantidade> <código> <título> <categoria no caso de DVD> 
@@ -36,10 +51,6 @@ int main() {
                 break;
 
             case 'LF': //Listar Filmes Ordenados por Código ou Título: LF <CPF> <Nome>
-
-                break;
-
-            case 'CC': //Cadastrar Cliente: RC <CPF>
 
                 break;
 
