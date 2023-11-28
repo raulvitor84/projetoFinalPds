@@ -26,32 +26,32 @@ int main() {
 
 
 
-                i++;
+            
                 break;
             case 'R':
 
-                minhaLista.remover();
+             //   minhaLista.remover();
                 break;
             case 'C':
-                minhaLista.contador();
+            //    minhaLista.contador();
 
                 break;
             case 'P':
-                int n;
-                cin >> n;
-                if (n >=1){
-                minhaLista.imprimirN(n-1);}
+             //   int n;
+             //   cin >> n;
+              //  if (n >=1){
+               // minhaLista.imprimirN(n-1);}
 
-                else{
-                    cout <<"ERRO"<< endl;
-                }
+             //   else{
+              //      cout <<"ERRO"<< endl;
+              //  }
 
 
 
                 break;
 
             case 'L':
-                minhaLista.exibirLista();
+         //       minhaLista.exibirLista();
                 break;
 
 
