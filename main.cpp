@@ -25,41 +25,39 @@ int main() {
          string cpf, nome;
             cadastro.cadastrarCliente(cpf, nome);
 
-
-
-            
                 break;
-            case 'R':
 
-             //   minhaLista.remover();
-                break;
-            case 'C':
-            //    minhaLista.contador();
+            case 'CF': //Cadastrar Filme: CF <Tipo: F|D> <quantidade> <código> <título> <categoria no caso de DVD> 
 
                 break;
-            case 'P':
-             //   int n;
-             //   cin >> n;
-              //  if (n >=1){
-               // minhaLista.imprimirN(n-1);}
-
-             //   else{
-              //      cout <<"ERRO"<< endl;
-              //  }
-
-
+                
+            case 'RF': //Remover Filme: RF <código>
 
                 break;
 
-            case 'L':
-         //       minhaLista.exibirLista();
+            case 'LF': //Listar Filmes Ordenados por Código ou Título: LF <CPF> <Nome>
+
                 break;
 
+            case 'CC': //Cadastrar Cliente: RC <CPF>
 
-            case 'E':
                 break;
 
+            case 'RC': //Remover Cliente: RC <CPF>
 
+                break;
+
+            case 'LC': //Listar Clientes ordenados por Código ou Nome: LC [C|N]
+
+                break;
+
+            case 'AL': //Aluguel Filme: AL <CPF> <Código1> ... <Código N>
+
+                break;
+
+            case 'DV': //Devolução Filme: DV <CPF>
+
+                break;
 
             default:
 
@@ -67,7 +65,7 @@ int main() {
         }
 
 
-} while (select != 'E');
+} while (select != 'FS');
 
     return 0;
 }
