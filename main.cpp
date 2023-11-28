@@ -8,7 +8,13 @@ using namespace std;
 
 
 
-void leitura_arquivo (char nome_arquivo) {
+float leitura_arquivo (char nome_arquivo) {
+
+  std::ifsteam arquivo(nome_arquivo);
+
+ if(!arquivo.is_open()) {
+   std::cerr << "ERRO: arquivo inexistente" << std::endl;
+   return 1;
  
 
 }
