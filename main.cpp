@@ -9,31 +9,22 @@ using namespace std;
 
 
 
-/*int main() {
-    CadastroClientes cadastro;
-
-
-    cadastro.cadastrarCliente("000.000.000-22", "Carlos Magno Rezende");
-   // cadastro.cadastrarCliente("111.111.111-00", "Helder Barbalho Pires");
-
-
-return 0;
-}
-*/
 int main() {
 
- MinhaLista minhaLista;
- char select;
- int i =1;
+
+ string select;
+
 
         do {
                cin >> select;
 
         switch (select) {
             case 'CC':
+         CadastroClientes cadastro;
+
+            cadastro.cadastrarCliente("000.000.000-22", "Carlos Magno Rezende");
 
 
-                minhaLista.inserir(i);
 
                 i++;
                 break;
