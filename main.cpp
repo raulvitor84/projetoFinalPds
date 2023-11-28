@@ -19,10 +19,11 @@ int main() {
                cin >> select;
 
         switch (select) {
+         
             case 'CC':
          CadastroClientes cadastro;
-
-            cadastro.cadastrarCliente("000.000.000-22", "Carlos Magno Rezende");
+         string cpf, nome;
+            cadastro.cadastrarCliente(cpf, nome);
 
 
 
