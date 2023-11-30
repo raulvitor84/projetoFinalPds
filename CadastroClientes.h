@@ -29,7 +29,7 @@ public:
 
         string checarNOME() const;
 
-
+        static bool compararPorCPF(const Cliente& a, const Cliente& b) ;
 
 
     private:
@@ -50,6 +50,7 @@ public:
 
     void listarClientes() const;
 
+    void ordenarClientes();
 
 
 
