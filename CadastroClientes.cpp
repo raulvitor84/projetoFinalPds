@@ -71,7 +71,9 @@ string CadastroClientes::Cliente::checarNOME() const {
     return nome;
 }
 
-
+bool CadastroClientes::Cliente::compararPorCPF(const Cliente& a, const Cliente& b) {
+    return a.checarCPF() < b.checarCPF();
+}
 
 
 // A  funcao exibe todos os clientes armazenados no vector 'clientes'
@@ -81,4 +83,9 @@ void CadastroClientes::listarClientes() const {
     for (const auto& cliente : clientes) {
         cout << cliente.checarCPF() << " " << cliente.checarNOME() << endl;
     }
+}
+
+
+void CadastroClientes::ordenarClientes() {
+    sort(clientes.begin(), clientes.end(), Cliente::compararPorCPF);
 }
