@@ -167,6 +167,7 @@ if (num == 141 && select == 65){
             case 143:  // ● Listar Clientes ordenados por Código ou Nome: LC [C|N]
 
 
+             cadastro.ordenarClientes();
 
 
              cadastro.listarClientes();
