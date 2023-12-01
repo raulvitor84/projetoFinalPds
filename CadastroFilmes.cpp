@@ -3,6 +3,7 @@
 #include <fstream>
 #include <algorithm>
 
+// Implementações da classe Filme
 Filme::Filme(const std::string& codigo, const std::string& titulo, int quantidade)
     : codigo(codigo), titulo(titulo), quantidade(quantidade) {}
 
@@ -18,6 +19,7 @@ int Filme::getQuantidade() const {
     return quantidade;
 }
 
+// Implementações da classe DVD
 DVD::DVD(const std::string& codigo, const std::string& titulo, int quantidade, CategoriaDVD categoria)
     : Filme(codigo, titulo, quantidade), categoria(categoria) {}
 
@@ -40,6 +42,7 @@ std::string DVD::getInfo() const {
     return codigo + " " + titulo + " " + std::to_string(quantidade) + " DVD";
 }
 
+// Implementações da classe Fita
 Fita::Fita(const std::string& codigo, const std::string& titulo, int quantidade, bool rebobinada)
     : Filme(codigo, titulo, quantidade), rebobinada(rebobinada) {}
 
@@ -59,6 +62,7 @@ std::string Fita::getInfo() const {
     return codigo + " " + titulo + " " + std::to_string(quantidade) + " Fita";
 }
 
+// Implementações da classe CadastroFilmes
 CadastroFilmes::CadastroFilmes() {}
 
 CadastroFilmes::~CadastroFilmes() {
@@ -197,4 +201,3 @@ Filme* CadastroFilmes::buscarFilme(const std::string& codigo) const {
 
     return (it != filmes.end()) ? *it : nullptr;
 }
-

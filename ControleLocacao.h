@@ -40,6 +40,10 @@ private:
     void exibirMensagemCliente(const std::string& cpf) const;
     void exibirSeparador() const;
     void exibirFilmes(const FilmeCodes& filmes) const;
+
+    // Adaptação para interação com o CadastroFilmes
+    bool validarEstoque(const FilmeCodes& filmes) const;
+    void atualizarEstoque(const FilmeCodes& filmes);
 };
 
 #endif // CONTROLELOCACAO_H

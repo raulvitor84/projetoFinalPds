@@ -1,3 +1,4 @@
+// ControleLocacao.cpp
 #include "ControleLocacao.h"
 #include <iostream>
 #include <iomanip>
@@ -5,82 +6,7 @@
 ControleLocacao::ControleLocacao(CadastroFilmes& filmes, CadastroClientes& clientes)
     : cadastroFilmes(filmes), cadastroClientes(clientes) {}
 
-void ControleLocacao::alugarFilme(const std::string& cpf, const std::vector<std::string>& codigosFilmes) {
-    if (!clienteExiste(cpf)) {
-        exibirErro("Cliente inexistente");
-        return;
-    }
-
-    FilmeCodes filmesAlugados = obterFilmesValidos(codigosFilmes);
-
-    locacoes[cpf] = filmesAlugados;
-
-    exibirMensagemReciboAluguel(cpf);
-}
-
-void ControleLocacao::devolverFilme(const std::string& cpf) {
-    if (!clienteExiste(cpf)) {
-        exibirErro("Cliente inexistente");
-        return;
-    }
-
-    if (!clienteTemLocacaoEmAndamento(cpf)) {
-        exibirErro("Cliente não tem locação em andamento");
-        return;
-    }
-
-    FilmeCodes filmesDevolvidos = locacoes[cpf];
-
-    exibirMensagemReciboDevolucao(cpf, filmesDevolvidos);
-
-    double totalPagar = calcularTotalPagar(filmesDevolvidos);
-    exibirMensagem("Total Pago: ", totalPagar);
-
-    locacoes.erase(cpf);
-}
-
-void ControleLocacao::imprimirReciboAluguel(const std::string& cpf) {
-    if (!clienteExiste(cpf) || !clienteTemLocacaoEmAndamento(cpf)) {
-        exibirErro("Cliente inexistente ou sem locação em andamento");
-        return;
-    }
-
-    exibirMensagemReciboAluguel(cpf);
-}
-
-void ControleLocacao::imprimirReciboDevolucao(const std::string& cpf) {
-    if (!clienteExiste(cpf) || !clienteTemLocacaoEmAndamento(cpf)) {
-        exibirErro("Cliente inexistente ou sem locação em andamento");
-        return;
-    }
-
-    FilmeCodes filmesDevolvidos = locacoes[cpf];
-
-    exibirMensagemReciboDevolucao(cpf, filmesDevolvidos);
-
-    double totalPagar = calcularTotalPagar(filmesDevolvidos);
-    exibirMensagem("Total Pago: ", totalPagar);
-}
-
-void ControleLocacao::imprimirRelatorioLocacoesEmCurso() {
-    if (locacoes.empty()) {
-        exibirMensagem("Nenhuma locação em andamento.");
-        return;
-    }
-
-    exibirMensagem("Relatório de Locações em Curso:");
-
-    for (const auto& entry : locacoes) {
-        const std::string& cpf = entry.first;
-        const FilmeCodes& filmesAlugados = entry.second;
-
-        exibirMensagemCliente(cpf);
-        exibirFilmes(filmesAlugados);
-        exibirSeparador();
-    }
-}
-
-FilmeCodes ControleLocacao::obterFilmesValidos(const std::vector<std::string>& codigosFilmes) const {
+ControleLocacao::FilmeCodes ControleLocacao::obterFilmesValidos(const std::vector<std::string>& codigosFilmes) const {
     FilmeCodes filmesValidos;
     for (const auto& codigo : codigosFilmes) {
         if (filmeExiste(codigo)) {
@@ -116,12 +42,20 @@ void ControleLocacao::exibirErro(const std::string& mensagem) const {
     std::cout << "ERRO: " << mensagem << std::endl;
 }
 
-void ControleLocacao::exibirMensagem(const std::string& mensagem, const FilmeCodes& filmes) const {
+void ControleLocacao::exibirErro(const char* mensagem) const {
+    std::cout << "ERRO: " << mensagem << std::endl;
+}
+
+void ControleLocacao::exibirMensagem(const char* mensagem) const {
+    std::cout << mensagem << std::endl;
+}
+
+void ControleLocacao::exibirMensagem(const char* mensagem, const FilmeCodes& filmes) const {
     std::cout << mensagem << std::endl;
     exibirFilmes(filmes);
 }
 
-void ControleLocacao::exibirMensagem(const std::string& mensagem, double valor) const {
+void ControleLocacao::exibirMensagem(const char* mensagem, double valor) const {
     std::cout << mensagem << std::fixed << std::setprecision(2) << valor << std::endl;
 }
 
@@ -159,3 +93,86 @@ void ControleLocacao::exibirFilmes(const FilmeCodes& filmes) const {
         std::cout << cadastroFilmes.getInfoFilme(codigo) << std::endl;
     }
 }
+
+bool ControleLocacao::validarEstoque(const FilmeCodes& filmes) const {
+    for (const auto& codigo : filmes) {
+        if (cadastroFilmes.calcularQuantidadeDisponivel(codigo) <= 0) {
+            return false; // Estoque insuficiente para pelo menos um filme
+        }
+    }
+    return true; // Estoque suficiente para todos os filmes
+}
+
+void ControleLocacao::atualizarEstoque(const FilmeCodes& filmes) {
+    for (const auto& codigo : filmes) {
+        cadastroFilmes.decrementarQuantidadeDisponivel(codigo);
+    }
+}
+
+void ControleLocacao::alugarFilme(const std::string& cpf, const std::vector<std::string>& codigosFilmes) {
+    if (!clienteExiste(cpf)) {
+        exibirErro("Cliente inexistente");
+        return;
+    }
+
+    FilmeCodes filmesAlugados = obterFilmesValidos(codigosFilmes);
+
+    if (!validarEstoque(filmesAlugados)) {
+        exibirErro("Estoque insuficiente para algum filme");
+        return;
+    }
+
+    locacoes[cpf] = filmesAlugados;
+    atualizarEstoque(filmesAlugados);
+
+    exibirMensagemReciboAluguel(cpf);
+}
+
+void ControleLocacao::devolverFilme(const std::string& cpf) {
+    if (!clienteExiste(cpf)) {
+        exibirErro("Cliente inexistente");
+        return;
+    }
+
+    if (!clienteTemLocacaoEmAndamento(cpf)) {
+        exibirErro("Cliente não tem locação em andamento");
+        return;
+    }
+
+    FilmeCodes filmesDevolvidos = locacoes[cpf];
+    atualizarEstoque(filmesDevolvidos);
+
+    exibirMensagemReciboDevolucao(cpf, filmesDevolvidos);
+
+    double totalPagar = calcularTotalPagar(filmesDevolvidos);
+    exibirMensagem("Total Pago: ", totalPagar);
+
+    locacoes.erase(cpf);
+}
+
+void ControleLocacao::imprimirReciboAluguel(const std::string& cpf) {
+    if (!clienteExiste(cpf) || !clienteTemLocacaoEmAndamento(cpf)) {
+        exibirErro("Cliente inexistente ou sem locação em andamento");
+        return;
+    }
+
+    exibirMensagemReciboAluguel(cpf);
+}
+
+void ControleLocacao::imprimirReciboDevolucao(const std::string& cpf) {
+    if (!clienteExiste(cpf) || !clienteTemLocacaoEmAndamento(cpf)) {
+        exibirErro("Cliente inexistente ou sem locação em andamento");
+        return;
+    }
+
+    FilmeCodes filmesDevolvidos = locacoes[cpf];
+    atualizarEstoque(filmesDevolvidos);
+
+    exibirMensagemReciboDevolucao(cpf, filmesDevolvidos);
+}
+
+void ControleLocacao::exibirMenu() {
+    // Implement your menu display logic here
+}
+
+// ... (rest of the class implementation)
