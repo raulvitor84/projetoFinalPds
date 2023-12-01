@@ -1,3 +1,4 @@
+// ControleLocacao.h
 #ifndef CONTROLELOCACAO_H
 #define CONTROLELOCACAO_H
 
@@ -24,6 +25,21 @@ private:
     LocacoesMap locacoes; // CPF -> Lista de códigos de filmes alugados
     CadastroFilmes& cadastroFilmes;
     CadastroClientes& cadastroClientes;
+
+    FilmeCodes obterFilmesValidos(const std::vector<std::string>& codigosFilmes) const;
+    bool clienteExiste(const std::string& cpf) const;
+    bool filmeExiste(const std::string& codigo) const;
+    double calcularTotalPagar(const FilmeCodes& filmes) const;
+    bool clienteTemLocacaoEmAndamento(const std::string& cpf) const;
+
+    void exibirErro(const std::string& mensagem) const;
+    void exibirMensagem(const std::string& mensagem, const FilmeCodes& filmes) const;
+    void exibirMensagem(const std::string& mensagem, double valor) const;
+    void exibirMensagemReciboAluguel(const std::string& cpf) const;
+    void exibirMensagemReciboDevolucao(const std::string& cpf, const FilmeCodes& filmes) const;
+    void exibirMensagemCliente(const std::string& cpf) const;
+    void exibirSeparador() const;
+    void exibirFilmes(const FilmeCodes& filmes) const;
 };
 
 #endif // CONTROLELOCACAO_H
