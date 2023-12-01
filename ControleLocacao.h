@@ -1,18 +1,14 @@
+// ControleLocacao.h
 #ifndef CONTROLELOCACAO_H
 #define CONTROLELOCACAO_H
 
-#include <iostream>
+#include <string>
 #include <vector>
 #include <map>
 #include "CadastroFilmes.h"
 #include "CadastroClientes.h"
 
 class ControleLocacao {
-private:
-    std::map<std::string, std::vector<std::string>> locacoes; // CPF -> Lista de códigos de filmes alugados
-    CadastroFilmes& cadastroFilmes;
-    CadastroClientes& cadastroClientes;
-
 public:
     ControleLocacao(CadastroFilmes& filmes, CadastroClientes& clientes);
 
@@ -21,6 +17,14 @@ public:
     void imprimirReciboAluguel(const std::string& cpf);
     void imprimirReciboDevolucao(const std::string& cpf);
     void imprimirRelatorioLocacoesEmCurso();
+
+private:
+    using FilmeCodes = std::vector<std::string>;
+    using LocacoesMap = std::map<std::string, FilmeCodes>;
+
+    LocacoesMap locacoes; // CPF -> Lista de códigos de filmes alugados
+    CadastroFilmes& cadastroFilmes;
+    CadastroClientes& cadastroClientes;
 };
 
 #endif // CONTROLELOCACAO_H
