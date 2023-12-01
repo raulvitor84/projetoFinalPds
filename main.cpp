@@ -56,8 +56,20 @@ if (num == 141 && select == 65){
 
 
 
-        //======================     NAO FINALIZADO =============================================**
+      
             case 137:  // ● Cadastrar Filme:CF <Tipo: F|D> <quantidade> <código> <título> <categoria no caso de DVD>
+
+            cin >> tipoDeMidia;
+            cin >> quantidade;
+            cin >> codigoFilme ;
+
+            getline(cin, titulo);
+
+            getline(cin, categoria);
+
+            cadastrar.cadastrarFilme(tipoDeMidia, quantidade, codigoFilme, titulo, categoria);
+
+
 
 
 
@@ -81,9 +93,12 @@ if (num == 141 && select == 65){
 
 
 
-        //======================     NAO FINALIZADO =============================================**
+   
             case 146:  // ● Listar Filmes ordenados por Código ou Título: LF [C|T]
 
+
+                cadastrar.ordenarFilmes();
+                cadastrar.listarFilmes();
 
 
 
