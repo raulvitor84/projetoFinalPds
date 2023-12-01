@@ -1,4 +1,3 @@
-// ControleLocacao.h
 #ifndef CONTROLELOCACAO_H
 #define CONTROLELOCACAO_H
 

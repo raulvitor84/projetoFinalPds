@@ -61,7 +61,7 @@ if (num == 141 && select == 65){
 
             cin >> tipoDeMidia;
             cin >> quantidade;
-            cin >> codigoFilme ;
+            cin >> codigoFilme;
 
             getline(cin, titulo);
 
