@@ -1,23 +1,12 @@
 #include "CadastroFilmes.h"
 #include <iostream>
 
-#include <memory>
+CadastroFilmes::CadastroFilmes() {}
 
-CadastroFilmes::CadastroFilmes() {
+CadastroFilmes::CadastroFilmes(char tipoMidia, int quantidade, int codigoFilme, string titulo, string categoria)
+    : tipoDeMidia(tipoMidia), quantidade(quantidade), codigoFilme(codigoFilme), titulo(titulo), categoria(categoria) {}
 
-}
-
-CadastroFilmes::CadastroFilmes(char tipoMidia, int quantidade, int codigoFilme, string titulo, string categoria) : tipoDeMidia(tipoMidia), quantidade(quantidade), codigoFilme(codigoFilme), titulo(titulo), categoria(categoria) {
-
-
-
-    }
-
-CadastroFilmes::~CadastroFilmes() {
-
-}
-
-
+CadastroFilmes::~CadastroFilmes() {}
 
 void CadastroFilmes::listarFilmes() {
     for (const auto& filme : filmes) {
@@ -25,8 +14,7 @@ void CadastroFilmes::listarFilmes() {
     }
 }
 
-bool CadastroFilmes::codigoExistente(int codigoFilme)  {
-
+bool CadastroFilmes::codigoExistente(int codigoFilme) {
     for (const auto& filme : filmes) {
         if (filme.checarCodigo() == codigoFilme) {
             return true;
@@ -36,50 +24,28 @@ bool CadastroFilmes::codigoExistente(int codigoFilme)  {
 }
 
 void CadastroFilmes::removerFilme(int codigoFilme) {
-
-
-    filmes.erase(remove_if(filmes.begin(), filmes.end(),   [codigoFilme](const CadastroFilmes& filme) {
-
-                        return filme.checarCodigo() == codigoFilme; }),
-
-                     filmes.end());
+    filmes.erase(remove_if(filmes.begin(), filmes.end(),
+                           [codigoFilme](const CadastroFilmes& filme) {
+                               return filme.checarCodigo() == codigoFilme;
+                           }),
+                 filmes.end());
 }
 
-
-
-
 int CadastroFilmes::checarCodigo() const {
-
     return codigoFilme;
 }
 
-
-
 string CadastroFilmes::checarTitulo() const {
-
     return titulo;
 }
 
-
-
-
-
 int CadastroFilmes::checarQuantidade() const {
-
     return quantidade;
 }
 
-
-
-
-
 char CadastroFilmes::checarTipoDeMidia() const {
-
     return tipoDeMidia;
 }
-
-
-
 
 string CadastroFilmes::checarCategoria() const {
     return categoria;
@@ -89,28 +55,19 @@ bool CadastroFilmes::compararPorCodigo(const CadastroFilmes& a, const CadastroFi
     return a.checarCodigo() < b.checarCodigo();
 }
 
-
-
-
-
 void CadastroFilmes::cadastrarFilme(char tipoDeMidia, int quantidade, int codigoFilme, string titulo, string categoria) {
-
     if (codigoExistente(codigoFilme)) {
-
-        cout << "ERRO: codigo repetido" << endl;
-
+        cout << "ERRO: Código repetido" << endl;
     } else {
-    filmes.push_back(CadastroFilmes(tipoDeMidia, quantidade, codigoFilme, titulo, categoria));
-        cout << "Filme " << codigoFilme << " " << titulo << " cadastrado com sucesso" << endl;
-
-
-
-
-
-
-   }
-
+        filmes.push_back(CadastroFilmes(tipoDeMidia, quantidade, codigoFilme, titulo, categoria));
+        cout << "Filme " << codigoFilme << " cadastrado com sucesso" << endl;
+    }
 }
+
+void CadastroFilmes::ordenarFilmes() {
+    sort(filmes.begin(), filmes.end(), CadastroFilmes::compararPorCodigo);
+}
+
 
 
 
@@ -121,5 +78,3 @@ void CadastroFilmes::cadastrarFilme(char tipoDeMidia, int quantidade, int codigo
 void CadastroFilmes::ordenarFilmes() {
     sort(filmes.begin(), filmes.end(), CadastroFilmes::compararPorCodigo);
 }
-
-
