@@ -1,49 +1,125 @@
-// ControleLocacao.h
-#ifndef CONTROLELOCACAO_H
-#define CONTROLELOCACAO_H
-
-#include <string>
-#include <vector>
-#include <map>
 #include "CadastroFilmes.h"
-#include "CadastroClientes.h"
+#include <iostream>
 
-class ControleLocacao {
-public:
-    ControleLocacao(CadastroFilmes& filmes, CadastroClientes& clientes);
+#include <memory>
 
-    void alugarFilme(const std::string& cpf, const std::vector<std::string>& codigosFilmes);
-    void devolverFilme(const std::string& cpf);
-    void imprimirReciboAluguel(const std::string& cpf);
-    void imprimirReciboDevolucao(const std::string& cpf);
-    void imprimirRelatorioLocacoesEmCurso();
+CadastroFilmes::CadastroFilmes() {
 
-private:
-    using FilmeCodes = std::vector<std::string>;
-    using LocacoesMap = std::map<std::string, FilmeCodes>;
+}
 
-    LocacoesMap locacoes; // CPF -> Lista de códigos de filmes alugados
-    CadastroFilmes& cadastroFilmes;
-    CadastroClientes& cadastroClientes;
+CadastroFilmes::CadastroFilmes(char tipoMidia, int quantidade, int codigoFilme, string titulo, string categoria) : tipoDeMidia(tipoMidia), quantidade(quantidade), codigoFilme(codigoFilme), titulo(titulo), categoria(categoria) {
 
-    FilmeCodes obterFilmesValidos(const std::vector<std::string>& codigosFilmes) const;
-    bool clienteExiste(const std::string& cpf) const;
-    bool filmeExiste(const std::string& codigo) const;
-    double calcularTotalPagar(const FilmeCodes& filmes) const;
-    bool clienteTemLocacaoEmAndamento(const std::string& cpf) const;
 
-    void exibirErro(const std::string& mensagem) const;
-    void exibirMensagem(const std::string& mensagem, const FilmeCodes& filmes) const;
-    void exibirMensagem(const std::string& mensagem, double valor) const;
-    void exibirMensagemReciboAluguel(const std::string& cpf) const;
-    void exibirMensagemReciboDevolucao(const std::string& cpf, const FilmeCodes& filmes) const;
-    void exibirMensagemCliente(const std::string& cpf) const;
-    void exibirSeparador() const;
-    void exibirFilmes(const FilmeCodes& filmes) const;
 
-    // Adaptação para interação com o CadastroFilmes
-    bool validarEstoque(const FilmeCodes& filmes) const;
-    void atualizarEstoque(const FilmeCodes& filmes);
-};
+    }
 
-#endif // CONTROLELOCACAO_H
+CadastroFilmes::~CadastroFilmes() {
+
+}
+
+
+
+void CadastroFilmes::listarFilmes() {
+    for (const auto& filme : filmes) {
+        cout << filme.checarCodigo() << " " << filme.checarTitulo() << " " << filme.checarQuantidade() << endl;
+    }
+}
+
+bool CadastroFilmes::codigoExistente(int codigoFilme)  {
+
+    for (const auto& filme : filmes) {
+        if (filme.checarCodigo() == codigoFilme) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void CadastroFilmes::removerFilme(int codigoFilme) {
+
+
+    filmes.erase(remove_if(filmes.begin(), filmes.end(),   [codigoFilme](const CadastroFilmes& filme) {
+
+                        return filme.checarCodigo() == codigoFilme; }),
+
+                     filmes.end());
+}
+
+
+
+
+int CadastroFilmes::checarCodigo() const {
+
+    return codigoFilme;
+}
+
+
+
+string CadastroFilmes::checarTitulo() const {
+
+    return titulo;
+}
+
+
+
+
+
+int CadastroFilmes::checarQuantidade() const {
+
+    return quantidade;
+}
+
+
+
+
+
+char CadastroFilmes::checarTipoDeMidia() const {
+
+    return tipoDeMidia;
+}
+
+
+
+
+string CadastroFilmes::checarCategoria() const {
+    return categoria;
+}
+
+bool CadastroFilmes::compararPorCodigo(const CadastroFilmes& a, const CadastroFilmes& b) {
+    return a.checarCodigo() < b.checarCodigo();
+}
+
+
+
+
+
+void CadastroFilmes::cadastrarFilme(char tipoDeMidia, int quantidade, int codigoFilme, string titulo, string categoria) {
+
+    if (codigoExistente(codigoFilme)) {
+
+        cout << "ERRO: codigo repetido" << endl;
+
+    } else {
+    filmes.push_back(CadastroFilmes(tipoDeMidia, quantidade, codigoFilme, titulo, categoria));
+        cout << "Filme " << codigoFilme << " " << titulo << " cadastrado com sucesso" << endl;
+
+
+
+
+
+
+   }
+
+}
+
+
+
+
+
+
+
+void CadastroFilmes::ordenarFilmes() {
+    sort(filmes.begin(), filmes.end(), CadastroFilmes::compararPorCodigo);
+}
+
+
