@@ -23,8 +23,6 @@ ao longo do semestre, entre elas, programação orientada a objetos, modelagem, 
 
 # Visão Geral
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
-
 ## Estrutura
 
 ## Funcionamento
