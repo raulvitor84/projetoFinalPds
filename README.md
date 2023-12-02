@@ -29,7 +29,7 @@ ao longo do semestre, entre elas, programação orientada a objetos, modelagem, 
 
 # Documentação
 
-<li> CLique aqui: <a href="Link do Doxygen"> </a></li>
+<li> Clique aqui: <a href="Link do Doxygen"> </a></li>
 
 
 # Conclusão
