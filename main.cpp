@@ -12,10 +12,19 @@
 int main() {
 
          CadastroClientes cadastro;
-         string cpf;
+         int cpf;
          string nome;
 
+         CadastroClientes cadastro;
 
+         CadastroFilmes cadastrar;
+
+         ControleLocacao locar;
+         int codigoFilme, quantidade, diasLocacao, codigos;
+
+        char tipoDeMidia;
+
+        string titulo, categoria;
 
 char select, select1;
 int num;
@@ -59,15 +68,10 @@ if (num == 141 && select == 65){
       
             case 137:  // ● Cadastrar Filme:CF <Tipo: F|D> <quantidade> <código> <título> <categoria no caso de DVD>
 
-            cin >> tipoDeMidia;
-            cin >> quantidade;
-            cin >> codigoFilme;
+         
+            cin >> tipoDeMidia >> quantidade >> codigoFilme >> titulo >> categoria;
 
-            getline(cin, titulo);
-
-            getline(cin, categoria);
-
-            cadastrar.cadastrarFilme(tipoDeMidia, quantidade, codigoFilme, titulo, categoria);
+              cadastrar.cadastrarFilme(tipoDeMidia, quantidade, codigoFilme, titulo, categoria);
 
 
 
@@ -81,6 +85,10 @@ if (num == 141 && select == 65){
         //======================     NAO FINALIZADO =============================================**
             case 152:  // ● Remover Filme: RF <código>
 
+            cin >> codigoFilme ;
+
+
+            cadastrar.removerFilme(codigoFilme);
 
 
 
@@ -109,11 +117,36 @@ if (num == 141 && select == 65){
                 break;
 
 
-        //======================     NAO FINALIZADO =============================================**
+        //=============================================================**
 
             case 142:  // ● Aluguel Filme: AL <CPF> <Código1> … <Código N>
 
 
+                cin >> cpf;
+                    if (!cadastro.clienteExistente(cpf)) {
+                        cout << "ERRO: CPF inexistente" << endl;
+
+                        }   else {
+
+               do {
+                    cin >> codigos;
+                        if(codigos == 0){goto fim; }
+                         if (!cadastrar.codigoExistente(codigos)) {
+                            cout << "ERRO: Codigo do Filme inexistente" << endl;
+                                goto fim;
+
+            }
+
+
+
+
+               locar.alugarFilme(codigos, cpf);
+
+               }while(codigos != 0);
+
+                        }
+
+fim:
 
 
 
@@ -125,7 +158,7 @@ if (num == 141 && select == 65){
 
 
 
-        //======================     NAO FINALIZADO =============================================**
+        //============================================================**
 
 
             case 154:  // ● Devolução Filme: DV <CPF>
