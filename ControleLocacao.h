@@ -1,50 +1,31 @@
-#include "ControleLocacao.h"
+#ifndef CONTROLELOCACAO_H
+#define CONTROLELOCACAO_H
+
+
 #include "CadastroClientes.h"
 #include "CadastroFilmes.h"
-#include <iostream>
+
+class ControleLocacao : public CadastroClientes::Cliente , public CadastroFilmes {
+public:
+
+    ControleLocacao(int cpf);
+
+    ControleLocacao() ;
+
+    ControleLocacao(int cpf, string nome, char tipoMidia, int quantidade, int codigoFilme, string titulo, string categoria);
+
+
+    void alugarFilme(int codigoFilme, int cpf);
+    void devolverFilme( int cpf);
 
 
 
 
+  //  private:
 
 
-ControleLocacao::ControleLocacao(int cpf) : CadastroClientes::Cliente(cpf) {}
+vector<ControleLocacao> filmesAlugados;
 
- ControleLocacao::ControleLocacao() : CadastroClientes::Cliente(0, ""), CadastroFilmes('D', 0, 0, "", "") {}
+};
 
-
-
-ControleLocacao::ControleLocacao(int cpf, string nome, char tipoMidia, int quantidade, int codigoFilme, string titulo, string categoria)
-        : CadastroClientes::Cliente(cpf, nome), CadastroFilmes(tipoMidia, quantidade, codigoFilme, titulo, categoria) {}
-
-
-
-
-
-
-
-
-
-
-
-
-void ControleLocacao::alugarFilme(  int codigoFilme, int cpf)  {
-
-
-        filmesAlugados.push_back(ControleLocacao( cpf, "", 'D', 0, codigoFilme,  "",  ""));
-
-
-        cout << "Cliente " << cpf << " alugou o filme: " << codigoFilme << endl;
-
-
-
-    for (const auto& testand : filmesAlugados) {
-        cout << testand.cpf<< " " << testand.codigoFilme  << endl;
-    }
-}
-
-
-
-void ControleLocacao::devolverFilme(int cpf) {
-
-}
+#endif // CONTROLELOCACAO_H
