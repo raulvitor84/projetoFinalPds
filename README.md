@@ -6,7 +6,7 @@
 
 
 Nosso projeto surgiu com o intuito de recriarmos um sistema de locação de filmes para uma locadora, sendo de certa forma
-nostalgico, já que esse tipo de sistema foi substituido pelas plataformas de streamers.
+nostálgico, já que esse tipo de sistema foi substituido pelas plataformas de streaming.
 Diante disso, esse projeto busca desenvolver esse mecanismo utilizando a linguagem c++, assim como as ferramentas aprendidas
 ao longo do semestre, entre elas, programação orientada a objetos, modelagem, programação defensiva.
 
