@@ -1,0 +1,13 @@
+{
+    "name": "DVD",
+    "superclasses": "CadastroFilmes",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Representa a categoria de filmes em DVD.",
+      "Adiciona responsabilidades específicas, como categorias de lançamento, estoque e promoção."
+    ],
+    "collaborators": [
+      "CadastroFilmes"
+    ]
+  }

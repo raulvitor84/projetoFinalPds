@@ -1,0 +1,16 @@
+{
+    "name": "ControleLocacao",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Controlar as operações de locação, devolução e registro de filmes alugados.",
+      "Alugar filmes para clientes.",
+      "Devolver filmes, calculando o valor a pagar.",
+      "Armazenar filmes alugados."
+    ],
+    "collaborators": [
+      "CadastroClientes",
+      "CadastroFilmes"
+    ]
+  }

@@ -1,0 +1,20 @@
+[
+    {
+      "name": "CadastroClientes",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Armazenar informações sobre os clientes, como CPF e nome.",
+        "Cadastrar novos clientes.",
+        "Remover clientes existentes.",
+        "Listar clientes ordenados por CPF ou nome.",
+        "Verificar se um CPF de cliente já existe.",
+        "Ordenar a lista de clientes."
+      ],
+      "collaborators": [
+        "ControleLocacao",
+        "CadastroClientes"
+      ]
+    }
+  ]

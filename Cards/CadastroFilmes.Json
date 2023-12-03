@@ -1,0 +1,22 @@
+[
+  {
+    "name": "CadastroFilmes",
+    "superclasses": "nenhuma",
+    "subclasses": "DVD, Fita",
+    "type": 1,
+    "responsibilities": [
+      "Cadastrar, remover e listar filmes.",
+      "Verificar a existência de um código de filme.",
+      "Ordenar a lista de filmes.",
+      "Fornecer informações sobre um filme por código.",
+      "Verificar se um código de filme já existe.",
+      "Obter informações de um filme pelo código."
+    ],
+    "collaborators": [
+      "Cliente",
+      "ControleLocacao",
+      "DVD",
+      "Fita"
+    ]
+  }
+]
