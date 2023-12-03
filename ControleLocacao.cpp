@@ -6,14 +6,19 @@
 
 using namespace std;
 
-ControleLocacao::ControleLocacao(int cpf) : CadastroClientes::Cliente(cpf) {}
+// Construtor para CPF
+ControleLocacao::ControleLocacao(int cpf) : CadastroClientes::Cliente(to_string(cpf)) {}
 
-ControleLocacao::ControleLocacao() : CadastroClientes::Cliente(0, ""), CadastroFilmes('D', 0, 0, "", "") {}
+// Construtor padrão
+ControleLocacao::ControleLocacao() : CadastroClientes::Cliente("0", ""), CadastroFilmes('D', 0, 0, "", "") {}
 
+// Construtor com parâmetros
 ControleLocacao::ControleLocacao(int cpf, string nome, char tipoMidia, int quantidade, int codigoFilme, string titulo, string categoria)
-    : CadastroClientes::Cliente(cpf, nome), CadastroFilmes(tipoMidia, quantidade, codigoFilme, titulo, categoria) {}
+    : CadastroClientes::Cliente(to_string(cpf), nome), CadastroFilmes(tipoMidia, quantidade, codigoFilme, titulo, categoria) {}
 
+// Método para alugar um filme
 void ControleLocacao::alugarFilme(int codigoFilme, int cpf) {
+    // Supondo que você tenha uma instância de CadastroFilmes em ControleLocacao, ajuste conforme necessário
     CadastroFilmes filme = cadastrar.obterFilmePorCodigo(codigoFilme);
 
     if (filme.checarCodigo() != 0) {
@@ -25,6 +30,7 @@ void ControleLocacao::alugarFilme(int codigoFilme, int cpf) {
     }
 }
 
+// Método para devolver um filme
 void ControleLocacao::devolverFilme(int codigoFilme, int cpf, int numeroDias) {
     auto it = find_if(filmesAlugados.begin(), filmesAlugados.end(),
                       [codigoFilme](const CadastroFilmes& filme) {

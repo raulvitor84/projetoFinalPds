@@ -68,13 +68,16 @@ void CadastroFilmes::ordenarFilmes() {
     sort(filmes.begin(), filmes.end(), CadastroFilmes::compararPorCodigo);
 }
 
+CadastroFilmes CadastroFilmes::obterFilmePorCodigo(int codigoFilme) const {
+    auto it = find_if(filmes.begin(), filmes.end(),
+                      [codigoFilme](const CadastroFilmes& filme) {
+                          return filme.checarCodigo() == codigoFilme;
+                      });
 
-
-
-
-
-
-
-void CadastroFilmes::ordenarFilmes() {
-    sort(filmes.begin(), filmes.end(), CadastroFilmes::compararPorCodigo);
+    if (it != filmes.end()) {
+        return *it;
+    } else {
+        // Retornar um filme com código 0 indicando que nenhum filme foi encontrado
+        return CadastroFilmes('0', 0, 0, "", "");
+    }
 }

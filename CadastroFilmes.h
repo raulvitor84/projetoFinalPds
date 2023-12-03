@@ -17,7 +17,7 @@ public:
     bool codigoExistente(int codigoFilme);
     void removerFilme(int codigoFilme);
     void listarFilmes();
-
+    
     int checarCodigo() const;
     string checarTitulo() const;
     int checarQuantidade() const;
@@ -26,6 +26,8 @@ public:
 
     static bool compararPorCodigo(const CadastroFilmes& a, const CadastroFilmes& b);
     void ordenarFilmes();
+    
+    CadastroFilmes obterFilmePorCodigo(int codigoFilme) const;
 
 protected:
     vector<CadastroFilmes> filmes;
