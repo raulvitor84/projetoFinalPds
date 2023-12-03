@@ -18,7 +18,6 @@ ControleLocacao::ControleLocacao(int cpf, string nome, char tipoMidia, int quant
 
 // Método para alugar um filme
 void ControleLocacao::alugarFilme(int codigoFilme, int cpf) {
-    // Supondo que a função obterFilmePorCodigo seja um método estático de CadastroFilmes
     CadastroFilmes filme = CadastroFilmes::obterFilmePorCodigo(codigoFilme);
 
     if (filme.checarCodigo() != 0) {
@@ -59,7 +58,6 @@ void ControleLocacao::devolverFilme(int codigoFilme, int cpf, int numeroDias) {
         cout << "Cliente " << cpf << " devolveu o filme " << codigoFilme << " após " << numeroDias << " dias." << endl;
         cout << "Valor a pagar: R$ " << valorFilme << endl;
 
-        // Remova o filme da lista de filmes alugados
         filmesAlugados.erase(it);
     } else {
         cout << "ERRO: Filme com código " << codigoFilme << " não encontrado." << endl;
