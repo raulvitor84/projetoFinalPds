@@ -18,8 +18,8 @@ ControleLocacao::ControleLocacao(int cpf, string nome, char tipoMidia, int quant
 
 // Método para alugar um filme
 void ControleLocacao::alugarFilme(int codigoFilme, int cpf) {
-    // Supondo que você tenha uma instância de CadastroFilmes em ControleLocacao, ajuste conforme necessário
-    CadastroFilmes filme = cadastrar.obterFilmePorCodigo(codigoFilme);
+    // Supondo que a função obterFilmePorCodigo seja um método estático de CadastroFilmes
+    CadastroFilmes filme = CadastroFilmes::obterFilmePorCodigo(codigoFilme);
 
     if (filme.checarCodigo() != 0) {
         filmesAlugados.push_back(filme);
