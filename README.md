@@ -35,11 +35,10 @@ As principais dificuldades foram:
   
 - Organização do código-fonte confusa e com métodos não convencionais.
   
-- Uso excessivo de variáveis globais.
+- Uso excessivo de variáveis globais e ausência de reusabilidade.
 
 - Grande dificuldade na implementação de tratamentos de exceções e testes de unidade.
 
-- Ausência de reusabilidade.
 
 ## Estrutura
 
