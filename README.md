@@ -42,6 +42,11 @@ As principais dificuldades foram:
 - Ausência de reusabilidade.
 
 ## Estrutura
+
+CRC CARDS
+
+
+
 [
   {
     "name": "Cliente",
