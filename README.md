@@ -8,7 +8,7 @@
 Nosso projeto surgiu com o intuito de recriarmos um sistema de locação de filmes para uma locadora, sendo de certa forma
 nostálgico, já que esse tipo de sistema foi substituido pelas plataformas de streaming.
 Diante disso, esse projeto busca desenvolver esse mecanismo utilizando a linguagem c++, assim como as ferramentas aprendidas
-ao longo do semestre, entre elas, programação orientada a objetos, modelagem, programação defensiva.
+ao longo do semestre, entre elas, programação orientada a objetos, modelagem, programação defensiva e desenvolvimente voltado a testes.
 
 ## Integrantes
 
@@ -22,6 +22,24 @@ ao longo do semestre, entre elas, programação orientada a objetos, modelagem, 
 * Luiz Chaimowicz
 
 # Visão Geral
+
+
+
+# Dificuldades Encontradas
+A maior dificuldade encontrada ocorreu na iminência da entrega do projeto, quando definimos ser necessário uma grande refatoração no código. 
+As principais dificuldades foram: 
+
+- Classes fortemente acopladas, tornando difícil a reutilização, testes e utilização de conceitos de OO.
+  
+- Presença de códigos duplicados em diferentes partes do sistema que dificultavam seu entendimento.
+  
+- Organização do código-fonte confusa e com métodos não convencionais.
+  
+- Uso excessivo de variáveis globais.
+
+- Grande dificuldade na implementação de tratamentos de exceções e testes de unidade.
+
+- Ausência de reusabilidade.
 
 ## Estrutura
 
