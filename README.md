@@ -42,7 +42,76 @@ As principais dificuldades foram:
 - Ausência de reusabilidade.
 
 ## Estrutura
-
+[
+  {
+    "name": "Cliente",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Cadastrar novos clientes com CPF e nome",
+      "Remover clientes existentes pelo CPF",
+      "Verificar cadastro prévio do CPF",
+      "Listar clientes ordenados \t",
+      ""
+    ],
+    "collaborators": [
+      "cpf",
+      "nome"
+    ]
+  },
+  {
+    "name": "Filmes",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Cadastrar filmes com tipo de mídia (VHS ou DVD), quantidade, código, título e categoria (DVD's)",
+      "Verificar a utilização prévia do código informado",
+      "Remover filmes através do código",
+      "Listar filmes de forma ordenada"
+    ],
+    "collaborators": [
+      "_codigo",
+      "_tipos",
+      "_nome",
+      "_quantidade",
+      ""
+    ]
+  },
+  {
+    "name": "Midia ",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "definir o tipo de Mídia (D/F) e atributos privados ",
+      "ler através de parêmetros informados",
+      ""
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "Aluguel ",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Alugar filmes em estoque para clientes cadastrados ",
+      "Armazenar locações realizadas de clientes e subtração de estoque",
+      "Devolver filmes locados e reinseri-lo em estoque",
+      "Gerar relatórios de locacao ",
+      "Gerar relatórios de devolução e valores a serem pagos",
+      "Listar o estoque de filmes disponíveis",
+      ""
+    ],
+    "collaborators": [
+      ""
+    ]
+  }
+]
 ## Funcionamento
 O correto funcionamento se dá através de inserção manual ou através de arquivos.txt de estruturas padronizadas:
 
