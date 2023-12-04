@@ -43,7 +43,7 @@ As principais dificuldades foram:
 ## Modelagem
 Os  cartões de responsabilidade de classes estão representados a seguir: 
 
-<li> Clique aqui:[crc cards.pdf](https://github.com/raulvitor84/projetoFinalPds/files/13552204/crc.cards.pdf)
+<li> Clique aqui: https://github.com/raulvitor84/projetoFinalPds/files/13552204/crc.cards.pdf
 
 
 ## Funcionamento
