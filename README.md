@@ -22,8 +22,8 @@ ao longo do semestre, entre elas, programação orientada a objetos, modelagem, 
 * Luiz Chaimowicz
 
 # Visão Geral
-
-
+O sistema proposto deve permitir cadastrar e remover clientes, diferentes tipos de mídias de filmes, além de realizar o controle por emissão de relatórios de locações de Fitas e Dvd's.
+O projeto utiliza três classes principais: "Clientes", "Filmes", e "Locacao". Cada uma delas possui métodos específicos pautados pelos princípios da responsabilidade única.
 
 # Dificuldades Encontradas
 A maior dificuldade encontrada ocorreu na iminência da entrega do projeto, quando definimos ser necessário uma grande refatoração no código. 
@@ -44,6 +44,21 @@ As principais dificuldades foram:
 ## Estrutura
 
 ## Funcionamento
+O correto funcionamento se dá através de inserção manual ou através de arquivos.txt de estruturas padronizadas:
+
+LA <Nome_do_Arquivo.txt>  : Lê um arquivo.txt de cadastro sequencial de filmes 
+CF <Tipo: F|D> <quantidade> <código> <título> <categoria no caso de DVD> : Cadastra um filme de características informadas
+RF <código> : Remove filme através do código 
+LF : Lista filmes por código cadastrado e suas características 
+CC <CPF> <Nome> : Cadastra um novo cliente através do CPF e Nome informado
+RC <CPF> : Remove um cliente através do CPF
+LC  : Lista Clientes ordenados por CPF
+AL <CPF> <Código1> … <Código N> : 
+
+
+
+
+
 
 # Documentação
 
