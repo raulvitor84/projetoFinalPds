@@ -46,7 +46,7 @@ As principais dificuldades foram:
 ## Funcionamento
 O correto funcionamento se dá através de inserção manual ou através de arquivos.txt de estruturas padronizadas:
 
-* LA <Nome_do_Arquivo.txt>  : Lê um arquivo.txt de cadastro sequencial de filmes /n
+* LA <Nome_do_Arquivo.txt>  : Lê um arquivo.txt de cadastro sequencial de filmes 
 * CF <Tipo: F|D> <quantidade> <código> <título> <categoria no caso de DVD> : Cadastra um filme de características informadas
 * RF <código> : Remove filme através do código 
 * LF : Lista filmes por código cadastrado e suas características 
