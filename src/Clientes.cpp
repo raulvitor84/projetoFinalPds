@@ -9,20 +9,6 @@ CadastroClientes::Cliente::Cliente(string cpf, string nome) : cpf(cpf), nome(nom
 
 
 
-void CadastroClientes::cadastrarCliente(string cpf, string nome) {
-    if (clienteExistente(cpf)) {
-
-        cout << "ERRO: CPF repetido" << endl;
-
-    } else {
-
-        clientes.push_back(Cliente(cpf, nome));
-        cout << "Cliente " << cpf << " cadastrado com sucesso" << endl;
-    }
-}
-
-
-
 
 
 // A funcao verifica se um CPF fornecido (passado como parametro) ja existe no vetor (vector clientes). Ela é passada como "const" pois nao modifica o estado do objeto "CadastroClientes"
@@ -63,21 +49,10 @@ void CadastroClientes::removerCliente(string cpf) {
 
 
 
-string CadastroClientes::Cliente::checarCPF() const {
-    return cpf;
-}
-
-string CadastroClientes::Cliente::checarNOME() const {
-    return nome;
-}
-
-bool CadastroClientes::Cliente::compararPorCPF(const Cliente& a, const Cliente& b) {
-    return a.checarCPF() < b.checarCPF();
-}
 
 
-// A  funcao exibe todos os clientes armazenados no vector 'clientes'
-// utiliza um loop for que percorre todos os elementos de 'clientes' e declara uma referencia constante 'cliente' (não modifica o objeto CC)
+
+
 
 void CadastroClientes::listarClientes() const {
     for (const auto& cliente : clientes) {
