@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "CadastroClientes.h"
-#include "CadastroFilmes.h"
-#include "ControleLocacao.h"
+#include "Clientes.h"
+#include "Filmes.h"
+#include "Locacao.h"
 
 
 
