@@ -67,8 +67,10 @@ O correto funcionamento se dá através de inserção manual ou através de arqu
 
 # Documentação
 
-<li> Clique aqui: 
-"> </a></li>
+<li> Clique aqui: https://github.com/raulvitor84/projetoFinalPds/files/13557386/documentacao.pdf
+<li> Pasta HTML completa: https://we.tl/t-c8O1u9uo9v
+
+
 
 
 # Conclusão
