@@ -1,20 +1,56 @@
-#ifndef CONTROLELOCACAO_H
-#define CONTROLELOCACAO_H
+#ifndef ALUGUEL_H
+#define ALUGUEL_H
 
-#include "CadastroClientes.h"
-#include "CadastroFilmes.h"
+#include "Filme.h"
 
-class ControleLocacao : public CadastroClientes::Cliente, public CadastroFilmes {
-public:
-    ControleLocacao(int cpf);
-    ControleLocacao();
-    ControleLocacao(int cpf, string nome, char tipoMidia, int quantidade, int codigoFilme, string titulo, string categoria);
+#include <string>
+#include <map>
+#include <iostream>
+#include <vector>
 
-    void alugarFilme(int codigoFilme, int cpf);
-    void devolverFilme(int codigoFilme, int cpf, int numeroDias);
+using namespace std;
 
-private:
-    vector<CadastroFilmes> filmesAlugados;
+/**
+ * @brief Classe que gerencia operações de aluguel e devolução dos filmes.
+ */
+
+
+
+class Aluguel
+{
+	public:
+    /**
+     * @brief Construtor da classe Aluguel.
+     * @param filmes_disponiveis Ponteiro para o vetor de filmes disponíveis.
+     */
+		Aluguel(vector<Filme> *filmes_disponiveis);
+
+
+    /**
+     * @brief Destrutor da classe Aluguel.
+     */
+		virtual ~Aluguel();
+
+
+    /**
+     * @brief Aluga um filme para um cliente.
+     * @param cpf CPF do cliente.
+     * @param filmes_alugados Vetor de (n)filmes a serem alugados.
+     */
+
+		void alugaFilmes(string cpf, vector<Filme> filmes_alugados);
+
+
+    /**
+     * @brief Devolução de filmes por um cliente.
+     * @param cpf CPF do cliente.
+     */
+
+		void devolveFilmes(string cpf);
+
+    private:
+        map<string, vector<Filme>> _alugueis; /**< Mapa que armazena os filmes alugados por cada cliente. */
+        vector<Filme> _filmes_disponiveis; /**< Vetor de filmes disponíveis para aluguel. */
 };
 
-#endif // CONTROLELOCACAO_H
+#endif // ALUGUEL_H
