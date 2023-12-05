@@ -1,0 +1,8 @@
+F D 5 0000 O Lobo de Wall Street estoque
+CF D 8 0001 Intocaveis promocao
+CF D 2 0002 Intocaveis lancamentos
+CF D 40 0003 Tropa de Elite estoque
+CF D 35 0004 Tropa de Elite 2 lancamentos
+CF F 1 0005 O Rei Leao
+CF F 3 0006 O Rei Leao 2
+CF D 587 0008 Teste Teste estoque
