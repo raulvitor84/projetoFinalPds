@@ -3,7 +3,7 @@
 Midia::Midia(string tipo, string categoria, int quantidade, bool rebobinada){
 	this->_tipo = tipo;
 	this->_categoria = categoria;
-    this->_quantidade = quantidade;
+    	this->_quantidade = quantidade;
 	this->_rebobinada = rebobinada;
 }
 
