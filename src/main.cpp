@@ -285,6 +285,15 @@ void removeFilme(vector<Filme> &filmes, vector<string> &info_entrada){
 }
 
 void listaFilmes(vector<Filme> &filmes, vector<string> &info_entrada){
+    if(info_entrada[1] == "C"){
+        sort( filmes.begin( ), filmes.end( ), [ ](Filme& lhs, Filme& rhs ){
+            return lhs.getCodigo() < rhs.getCodigo();
+        });
+    }else{
+        sort( filmes.begin( ), filmes.end( ), [ ](Filme& lhs, Filme& rhs ){
+            return lhs.getNome() < rhs.getNome();
+        });
+    }
 	for(unsigned int i = 0; i < filmes.size(); i++){
         vector<Midia> midia = filmes[i].getTipos();
         for(unsigned int j = 0; j < midia.size(); j++){
