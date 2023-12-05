@@ -23,7 +23,7 @@ class Aluguel
      * @brief Construtor da classe Aluguel.
      * @param filmes_disponiveis Ponteiro para o vetor de filmes disponíveis.
      */
-		Aluguel(vector<Filme> *filmes_disponiveis);
+		Aluguel(vector<Filme>& filmes_disponiveis);
 
 
     /**
@@ -46,11 +46,11 @@ class Aluguel
      * @param cpf CPF do cliente.
      */
 
-		void devolveFilmes(string cpf);
+		void devolveFilmes(string cpf, vector<Cliente>, int);
 
     private:
         map<string, vector<Filme>> _alugueis; /**< Mapa que armazena os filmes alugados por cada cliente. */
-        vector<Filme> _filmes_disponiveis; /**< Vetor de filmes disponíveis para aluguel. */
+        vector<Filme> *_filmes_disponiveis; /**< Vetor de filmes disponíveis para aluguel. */
 };
 
 #endif // ALUGUEL_H
