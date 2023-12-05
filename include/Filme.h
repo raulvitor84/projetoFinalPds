@@ -16,7 +16,7 @@ class Filme
      * @param nome (Nome do filme).
      * @param tipos (Vetor de tipos de mídia).
      */
-		Filme(string codigo, string nome, vector<Midia> *tipos = nullptr);
+		Filme(string codigo, string nome, int quantidade, vector<Midia> *tipos = nullptr);
 
     /**
      * @brief Destrutor da classe Filme.
@@ -68,6 +68,13 @@ class Filme
      * @param Nome do filme.
      */
         void setNome(string);
+
+    /**
+     * @brief Define a quantidade.
+     * @param Qtd dos filmes.
+     */
+
+	void setQuantidade(int);
 
     private:
         string _codigo; ///< Codigo do filme
