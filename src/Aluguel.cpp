@@ -35,6 +35,8 @@ void Aluguel::devolveFilmes(string cpf, vector<Cliente> clientes, int dias_locac
                     if (it != _filmes_disponiveis->end()){
                         string categoria = _filmes_disponiveis->at(distance(_filmes_disponiveis->begin(), it)).getTipos()[0].getCategoria();
                         string tipo = _filmes_disponiveis->at(distance(_filmes_disponiveis->begin(), it)).getTipos()[0].getTipo();
+                        int qtd = _filmes_disponiveis->at(distance(_filmes_disponiveis->begin(), it)).getQuantidade();
+                        _filmes_disponiveis->at(distance(_filmes_disponiveis->begin(), it)).setQuantidade(qtd+1);
                         if(tipo == "D"){
                             if(categoria == "lancamentos"){
                                 valor_total += 20*dias_locacao;
