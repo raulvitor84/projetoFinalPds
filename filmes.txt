@@ -1,4 +1,4 @@
-F D 5 0000 O Lobo de Wall Street estoque
+CF D 5 0000 O Lobo de Wall Street estoque
 CF D 8 0001 Intocaveis promocao
 CF D 2 0002 Intocaveis lancamentos
 CF D 40 0003 Tropa de Elite estoque
