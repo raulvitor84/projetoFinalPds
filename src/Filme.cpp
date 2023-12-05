@@ -1,33 +1,41 @@
-#ifndef FILME_H
-#define FILME_H
+#include "Filme.h"
 
-#include <string>
-#include <vector>
-#include "Midia.h"
+Filme::Filme(string codigo, string nome, int quantidade, vector<Midia> *tipos){
+	this->_codigo = codigo;
+	this->_nome = nome;
+    this->_quantidade = quantidade;
+}
 
-using namespace std;
+Filme::~Filme() {}
 
-class Filme
-{
-	public:
-		Filme(string codigo, string nome, int quantidade, vector<Midia> *tipos = nullptr);
-		virtual ~Filme();
+string Filme::getCodigo(){
+    return _codigo;
+}
 
-		string getCodigo();
-        string getNome();
-        vector<Midia> getTipos();
-        int getQuantidade();
+vector<Midia> Filme::getTipos(){
+    return _tipos;
+}
 
-		void setCodigo(string);
-        void addTipos(Midia);
-        void setNome(string);
-        void setQuantidade(int);
+string Filme::getNome(){
+    return _nome;
+}
 
-    private:
-        string _codigo;
-        vector<Midia> _tipos;
-        string _nome;
-        int _quantidade;
-};
+int Filme::getQuantidade(){
+    return _quantidade;
+}
 
-#endif // FILME_H
+void Filme::setCodigo(string codigo){
+	this->_codigo = codigo;
+}
+
+void Filme::addTipos(Midia midia){
+    this->_tipos.push_back(midia);
+}
+
+void Filme::setNome(string nome){
+	this->_nome = nome;
+}
+
+void Filme::setQuantidade(int qtd){
+	this->_quantidade = qtd;
+}
