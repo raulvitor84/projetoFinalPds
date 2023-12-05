@@ -1,5 +1,5 @@
 build: main.o Cliente.o Midia.o Filme.o Locacao.o
-    g++ main.o Personagem.o Vilao.o Heroi.o Locacao.o -o $@
+    g++ main.o Personagem.o Vilao.o Heroi.o Locacao.o -o 
 
 main.o: main.cpp
     g++ -c main.cpp
