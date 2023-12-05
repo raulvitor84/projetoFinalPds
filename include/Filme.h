@@ -1,40 +1,32 @@
-#ifndef CADASTROFILMES_H
-#define CADASTROFILMES_H
+#ifndef FILME_H
+#define FILME_H
 
-#include <algorithm>
 #include <string>
 #include <vector>
+#include "Midia.h"
 
 using namespace std;
 
-class CadastroFilmes {
-public:
-    CadastroFilmes();
-    CadastroFilmes(char tipoMidia, int quantidade, int codigoFilme, string titulo, string categoria);
-    virtual ~CadastroFilmes();
+class Filme
+{
+	public:
+		Filme(string codigo, string nome, vector<Midia> *tipos = nullptr);
+		virtual ~Filme();
 
-    void cadastrarFilme(char tipoDeMidia, int quantidade, int codigoFilme, string titulo, string categoria);
-    bool codigoExistente(int codigoFilme);
-    void removerFilme(int codigoFilme);
-    void listarFilmes();
-    
-    int checarCodigo() const;
-    string checarTitulo() const;
-    int checarQuantidade() const;
-    char checarTipoDeMidia() const;
-    string checarCategoria() const;
+		string getCodigo();
+        string getNome();
+        vector<Midia> getTipos();
+        int getQuantidade();
 
-    static bool compararPorCodigo(const CadastroFilmes& a, const CadastroFilmes& b);
-    void ordenarFilmes();
-    
-    CadastroFilmes obterFilmePorCodigo(int codigoFilme) const;
+		void setCodigo(string);
+        void addTipos(Midia);
+        void setNome(string);
 
-protected:
-    vector<CadastroFilmes> filmes;
-
-    int codigoFilme, quantidade;
-    char tipoDeMidia;
-    string titulo, categoria;
+    private:
+        string _codigo;
+        vector<Midia> _tipos;
+        string _nome;
+        int _quantidade;
 };
 
-#endif // CADASTROFILMES_H
+#endif // FILME_H
