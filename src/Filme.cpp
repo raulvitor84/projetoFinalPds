@@ -1,10 +1,26 @@
 #include "Filme.h"
 
+#include <stdexcept>
+
+#include<iostream>
+
 Filme::Filme(string codigo, string nome, int quantidade, vector<Midia> *tipos){
-	this->_codigo = codigo;
-	this->_nome = nome;
+try {
+    if (codigo.empty() || nome.empty() ){
+        throw std::invalid_argument("Argumentos inválidos.");
+	}
+
+    this->_codigo = codigo;
+    this->_nome = nome;
     this->_quantidade = quantidade;
+
+} catch (const exception& e){
+    cerr << "Erro ao criar filme: " << e.what() << endl;
+    throw;
+    }
 }
+
+
 
 Filme::~Filme() {}
 
