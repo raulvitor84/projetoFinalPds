@@ -1,83 +1,41 @@
-#include "CadastroFilmes.h"
-#include <iostream>
+#include "Filme.h"
 
-CadastroFilmes::CadastroFilmes() {}
+Filme::Filme(string codigo, string nome, vector<Midia> *tipos){
+	this->_codigo = codigo;
+    //this->_tipos = tipos;
+	this->_nome = nome;
 
-CadastroFilmes::CadastroFilmes(char tipoMidia, int quantidade, int codigoFilme, string titulo, string categoria)
-    : tipoDeMidia(tipoMidia), quantidade(quantidade), codigoFilme(codigoFilme), titulo(titulo), categoria(categoria) {}
-
-CadastroFilmes::~CadastroFilmes() {}
-
-void CadastroFilmes::listarFilmes() {
-    for (const auto& filme : filmes) {
-        cout << filme.checarCodigo() << " " << filme.checarTitulo() << " " << filme.checarQuantidade() << endl;
-    }
+    this->_quantidade = 0;
 }
 
-bool CadastroFilmes::codigoExistente(int codigoFilme) {
-    for (const auto& filme : filmes) {
-        if (filme.checarCodigo() == codigoFilme) {
-            return true;
-        }
-    }
-    return false;
+Filme::~Filme() {}
+
+string Filme::getCodigo(){
+    return _codigo;
 }
 
-void CadastroFilmes::removerFilme(int codigoFilme) {
-    filmes.erase(remove_if(filmes.begin(), filmes.end(),
-                           [codigoFilme](const CadastroFilmes& filme) {
-                               return filme.checarCodigo() == codigoFilme;
-                           }),
-                 filmes.end());
+vector<Midia> Filme::getTipos(){
+    return _tipos;
 }
 
-int CadastroFilmes::checarCodigo() const {
-    return codigoFilme;
+string Filme::getNome(){
+    return _nome;
 }
 
-string CadastroFilmes::checarTitulo() const {
-    return titulo;
+int Filme::getQuantidade(){
+    return _quantidade;
 }
 
-int CadastroFilmes::checarQuantidade() const {
-    return quantidade;
+void Filme::setCodigo(string codigo){
+	this->_codigo = codigo;
 }
 
-char CadastroFilmes::checarTipoDeMidia() const {
-    return tipoDeMidia;
+void Filme::addTipos(Midia midia){
+    //falta verificar se midia ja existe...
+    this->_tipos.push_back(midia);
+    this->_quantidade += midia.getQuantidade();
 }
 
-string CadastroFilmes::checarCategoria() const {
-    return categoria;
-}
-
-bool CadastroFilmes::compararPorCodigo(const CadastroFilmes& a, const CadastroFilmes& b) {
-    return a.checarCodigo() < b.checarCodigo();
-}
-
-void CadastroFilmes::cadastrarFilme(char tipoDeMidia, int quantidade, int codigoFilme, string titulo, string categoria) {
-    if (codigoExistente(codigoFilme)) {
-        cout << "ERRO: Código repetido" << endl;
-    } else {
-        filmes.push_back(CadastroFilmes(tipoDeMidia, quantidade, codigoFilme, titulo, categoria));
-        cout << "Filme " << codigoFilme << " cadastrado com sucesso" << endl;
-    }
-}
-
-void CadastroFilmes::ordenarFilmes() {
-    sort(filmes.begin(), filmes.end(), CadastroFilmes::compararPorCodigo);
-}
-
-CadastroFilmes CadastroFilmes::obterFilmePorCodigo(int codigoFilme) const {
-    auto it = find_if(filmes.begin(), filmes.end(),
-                      [codigoFilme](const CadastroFilmes& filme) {
-                          return filme.checarCodigo() == codigoFilme;
-                      });
-
-    if (it != filmes.end()) {
-        return *it;
-    } else {
-        // Retornar um filme com código 0 indicando que nenhum filme foi encontrado
-        return CadastroFilmes('0', 0, 0, "", "");
-    }
+void Filme::setNome(string nome){
+	this->_nome = nome;
 }
