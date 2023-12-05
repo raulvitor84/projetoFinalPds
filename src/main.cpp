@@ -172,6 +172,9 @@ void carregaFilmes(vector<Filme> &filmes, vector<string> &info_entrada){
             m++;
             linha.erase(0, pos + separador.length());
         }
+	if(tipo == "F"){
+            nome += linha.substr(linha.find_last_of(' ') + 1);
+        }
 
 
         // Dados disponiveis a partir daqui para serem registrados
