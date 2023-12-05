@@ -1,65 +1,66 @@
-#include "ControleLocacao.h"
-#include "CadastroClientes.h"
-#include "CadastroFilmes.h"
-#include <iostream>
-#include <algorithm>
+#include "Aluguel.h"
 
-using namespace std;
+Aluguel::Aluguel(vector<Filme>& filmes_disponiveis){
+    this-> _filmes_disponiveis = &filmes_disponiveis;
+}
 
-// Construtor para CPF
-ControleLocacao::ControleLocacao(int cpf) : CadastroClientes::Cliente(to_string(cpf)) {}
+Aluguel::~Aluguel() {}
 
-// Construtor padrão
-ControleLocacao::ControleLocacao() : CadastroClientes::Cliente("0", ""), CadastroFilmes('D', 0, 0, "", "") {}
-
-// Construtor com parâmetros
-ControleLocacao::ControleLocacao(int cpf, string nome, char tipoMidia, int quantidade, int codigoFilme, string titulo, string categoria)
-    : CadastroClientes::Cliente(to_string(cpf), nome), CadastroFilmes(tipoMidia, quantidade, codigoFilme, titulo, categoria) {}
-
-// Método para alugar um filme
-void ControleLocacao::alugarFilme(int codigoFilme, int cpf) {
-    CadastroFilmes filme = CadastroFilmes::obterFilmePorCodigo(codigoFilme);
-
-    if (filme.checarCodigo() != 0) {
-        filmesAlugados.push_back(filme);
-
-        cout << "Cliente " << cpf << " alugou o filme: " << codigoFilme << endl;
-    } else {
-        cout << "ERRO: Filme com código " << codigoFilme << " não encontrado." << endl;
+void Aluguel::alugaFilmes(string cpf, vector<Filme> filmes_alugados){
+    for(unsigned int i = 0; i < filmes_alugados.size(); i++){
+        string codigo = filmes_alugados[i].getCodigo();
+        auto it = find_if(_filmes_disponiveis->begin(), _filmes_disponiveis->end(), [codigo](Filme& obj) {return obj.getCodigo() == codigo;});
+        if (it != _filmes_disponiveis->end()){
+            int qtd = (_filmes_disponiveis->at(distance(_filmes_disponiveis->begin(), it))).getTipos()[0].getQuantidade();
+            _filmes_disponiveis->at(distance(_filmes_disponiveis->begin(), it)).setQuantidade(qtd-1);
+            _alugueis[cpf].push_back(filmes_alugados[i]);
+         }else{
+          cout << "filme inexistente" << endl;
+         }
     }
 }
 
-// Método para devolver um filme
-void ControleLocacao::devolverFilme(int codigoFilme, int cpf, int numeroDias) {
-    auto it = find_if(filmesAlugados.begin(), filmesAlugados.end(),
-                      [codigoFilme](const CadastroFilmes& filme) {
-                          return filme.checarCodigo() == codigoFilme;
-                      });
+void Aluguel::devolveFilmes(string cpf, vector<Cliente> clientes, int dias_locacao){
 
-    if (it != filmesAlugados.end()) {
-        CadastroFilmes& filme = *it;
-        double valorFilme = 0.0;
+    auto it = find_if(clientes.begin(), clientes.end(), [cpf](Cliente& obj) {return obj.getCPF() == cpf;});
+    if (it != clientes.end()){
+        string codigo = "";
+        int valor_total = 0;
+        string nome = clientes[distance(clientes.begin(), it)].getNome();
+        cout << "Cliente " << cpf << " " <<nome << " devolveu os filmes alugados por " << dias_locacao << " dia(s):" <<endl;
 
-        if (filme.checarTipoDeMidia() == 'D') { // DVD
-            if (filme.checarCategoria() == "Lancamento") {
-                valorFilme = 20.0 * numeroDias;
-            } else if (filme.checarCategoria() == "Estoque") {
-                valorFilme = 10.0 * numeroDias;
-            } else if (filme.checarCategoria() == "Promocao") {
-                valorFilme = 10.0;
-            }
-        } else if (filme.checarTipoDeMidia() == 'F') { // Fita de Vídeo
-            valorFilme = 5.0;
-            if (filme.checarCategoria() == "Rebobinada") {
-                valorFilme += 2.0; // Multa por não rebobinar a fita
-            }
+        for(unsigned int i = 0; i < _alugueis[cpf].size(); i++){
+            codigo = _alugueis[cpf][i].getCodigo();
+                    auto it = find_if(_filmes_disponiveis->begin(), _filmes_disponiveis->end(), [codigo](Filme& obj) {return obj.getCodigo() == codigo;});
+                    if (it != _filmes_disponiveis->end()){
+                        string categoria = _filmes_disponiveis->at(distance(_filmes_disponiveis->begin(), it)).getTipos()[0].getCategoria();
+                        string tipo = _filmes_disponiveis->at(distance(_filmes_disponiveis->begin(), it)).getTipos()[0].getTipo();
+                        if(tipo == "D"){
+                            if(categoria == "lancamentos"){
+                                valor_total += 20*dias_locacao;
+                                cout << codigo << " R$" << 20*dias_locacao << endl;
+                            }else if(categoria == "estoque"){
+                                valor_total += 10*dias_locacao;
+                                cout << codigo << " R$" << 10*dias_locacao << endl;
+                            }else{
+                                valor_total+= 10*dias_locacao;
+                                cout << codigo << " R$" << 10*dias_locacao << endl;
+                            }
+                        }else{
+                            int randRebob = rand()%(1-0 + 1) + 0;
+                            int valor_fita = 5 + 2*randRebob;
+                            valor_total += valor_fita;
+                            cout << codigo << " R$" << valor_fita << endl;
+                        }
+                    }else{
+                        cout << "Filme "<< codigo << " inexistente." << endl;
+                    }
         }
 
-        cout << "Cliente " << cpf << " devolveu o filme " << codigoFilme << " após " << numeroDias << " dias." << endl;
-        cout << "Valor a pagar: R$ " << valorFilme << endl;
+                   cout << "R$" << valor_total << endl;
 
-        filmesAlugados.erase(it);
-    } else {
-        cout << "ERRO: Filme com código " << codigoFilme << " não encontrado." << endl;
-    }
+            }else{
+                cout << "CPF inexistente." << endl;
+            }
+
 }
