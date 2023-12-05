@@ -23,7 +23,7 @@ ao longo do semestre, entre elas, programação orientada a objetos, modelagem, 
 
 # Visão Geral
 O sistema proposto deve permitir cadastrar e remover clientes, diferentes tipos de mídias de filmes, além de realizar o controle por emissão de relatórios de locações de Fitas e Dvd's.
-O projeto utiliza três classes principais: "Clientes", "Filmes", e "Locacao". Cada uma delas possui métodos específicos pautados pelos princípios da responsabilidade única.
+O projeto utiliza três classes principais: "Cliente", "Midia", "Filme", e "Aluguel". Cada uma delas possui métodos específicos pautados pelos princípios da responsabilidade única.
 
 # Dificuldades Encontradas
 A maior dificuldade encontrada ocorreu na iminência da entrega do projeto, quando definimos ser necessário uma grande refatoração no código. 
