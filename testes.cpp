@@ -9,20 +9,20 @@
 TEST_CASE("Teste de Clientes") {
     Clientes cadastro;
 
-    cadastro.cadastraCliente(911222, "Raul Vitor");
-    CHECK(cadastro.//clienteExistente(911222) == true);
+    cadastro.Cliente(911222, "Raul Vitor");
+    CHECK(cadastro.getCPF() == 911222);
 
-    cadastro.cadastraCliente(25896, "Lucas Moura");
-    CHECK(cadastro.//clienteExistente(5488) == false);
+    cadastro.Cliente(25896, "Lucas Moura");
+    CHECK(cadastro.getCPF() == 25896);
 
-    cadastro.cadastraCliente(1010, "Esdras silva");
-    CHECK(cadastro.//clienteExistente(9998) == false);
+    cadastro.Cliente(1010, "Esdras silva");
+    CHECK(cadastro.getCPF() != 0000);
 
-    cadastro.cadastraCliente(101011, "Leonardo Alves");
-    CHECK(cadastro.//clienteExistente(101011) == true);
+    cadastro.Cliente(101011, "Leonardo Alves");
+    CHECK(cadastro.getCPF() == 101011);
 
 
-    cadastro.removeCliente(911222);
+    cadastro.Cliente(911222);
     CHECK(cadastro.//clienteExistente(911222) == false);
 
     cadastro.removeCliente(25896);
