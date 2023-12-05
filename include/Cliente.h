@@ -1,66 +1,24 @@
-#ifndef CADASTROCLIENTES_H
-#define CADASTROCLIENTES_H
-
-#include <algorithm>
-
+#ifndef CLIENTE_H
+#define CLIENTE_H
 
 #include <string>
 
-#include <vector>
-
 using namespace std;
 
+class Cliente
+{
+	public:
+		Cliente(string nome, string cpf);
+		virtual ~Cliente();
 
-// Classes referentes ao Cadastro de Clientes pela separacao de 1/3 informada
-
-
-class CadastroClientes {
-public:
-
-    // classe interna
-    class Cliente {
-
-    public:
-
-
-        Cliente(string cpf, string nome);
-
-        string checarCPF() const;
-
-        string checarNOME() const;
-
-        static bool compararPorCPF(const Cliente& a, const Cliente& b) ;
-
+		string getNome();
+		string getCPF();
+		void setNome(string);
+		void setCPF(string);
 
     private:
-
-        string cpf;
-
-        string nome;
-
-
-    };
-
-
-    void cadastrarCliente(string cpf, string nome);
-
-    bool clienteExistente(string cpf);
-
-    void removerCliente(string cpf);
-
-    void listarClientes() const;
-
-    void ordenarClientes();
-
-
-
-
-private:
-
-    vector<Cliente> clientes;
-
+        string _nome;
+        string _cpf;
 };
 
-
-#endif // CADASTROCLIENTES_H
-
+#endif // CLIENTE_H
