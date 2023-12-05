@@ -64,5 +64,5 @@ void Aluguel::devolveFilmes(string cpf, vector<Cliente> clientes, int dias_locac
             }else{
                 cout << "CPF inexistente." << endl;
             }
-
+    _alugueis[cpf].clear();
 }
